@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 /**
  *
  * @author SamuelBoada
+ * 
  */
 @Entity
 public class Position {

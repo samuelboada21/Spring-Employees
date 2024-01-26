@@ -1,9 +1,14 @@
 package com.employees.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 /**
  *
  * @author SamuelBoada
@@ -19,13 +24,22 @@ public class Position {
     private String name;
     private double salary;
 
+    @OneToMany(mappedBy = "position")
+    private List<Employee> employees;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manager_id")
+    private UserA manager;
+
     public Position() {
     }
 
-    public Position(Integer id, String name, double salary) {
+    public Position(Integer id, String name, double salary, List<Employee> employees, UserA manager) {
         this.id = id;
         this.name = name;
         this.salary = salary;
+        this.employees = employees;
+        this.manager = manager;
     }
 
     public Integer getId() {
@@ -52,6 +66,21 @@ public class Position {
         this.salary = salary;
     }
 
-    
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public UserA getManager() {
+        return manager;
+    }
+
+    public void setManager(UserA manager) {
+        this.manager = manager;
+    }
+   
 }
 

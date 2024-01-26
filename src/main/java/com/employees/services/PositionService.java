@@ -2,6 +2,7 @@
 package com.employees.services;
 
 import com.employees.models.Position;
+import com.employees.models.UserA;
 import com.employees.repositories.PositionRepository;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
@@ -42,6 +43,10 @@ public class PositionService {
             throw new EntityNotFoundException("Position not found with id: " + id);
         }
         positionRepository.deleteById(id);
+    }
+    
+    public List<Position> getPositionsForManager(UserA manager) {
+        return positionRepository.findByManager(manager);
     }
     
 }

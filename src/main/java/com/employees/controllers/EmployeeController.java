@@ -25,10 +25,10 @@ public class EmployeeController {
     @Autowired
     private PositionService positionService;
     
-    @GetMapping("/")
+    @GetMapping("/employees")
     public String viewHomePage(Model model){
         model.addAttribute("listEmployees", employeeService.getAllEmployees());
-        return "index";
+        return "employees";
     }
     
     @GetMapping("/showNewEmployeeForm")

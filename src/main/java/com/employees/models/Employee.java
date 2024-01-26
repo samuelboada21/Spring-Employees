@@ -26,15 +26,20 @@ public class Employee {
     @JoinColumn(name = "position_id")
     private Position position;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserA user;
+
     public Employee() {
     }
 
-    public Employee(Integer id, String firstName, String lastName, String phoneNumber, Position position) {
+    public Employee(Integer id, String firstName, String lastName, String phoneNumber, Position position, UserA user) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.position = position;
+        this.user = user;
     }
 
     public Integer getId() {
@@ -76,5 +81,13 @@ public class Employee {
     public void setPosition(Position position) {
         this.position = position;
     }
-    
+
+    public UserA getUser() {
+        return user;
+    }
+
+    public void setUser(UserA user) {
+        this.user = user;
+    }
+
 }
